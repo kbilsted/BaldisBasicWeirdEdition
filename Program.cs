@@ -2,7 +2,16 @@
 int problemNumber = 1;
 int points = 0;
 bool AllCorrectAnswers = true;
-string[] correctTexts = new[] { "Correct! :)", "You are amazing", "Wow!", "What! How are you doing this", "You're a genius" };
+string[] correctTexts =
+    [
+    "Correct! :)",
+        "You are amazing",
+        "Wow!",
+        "What! How are you doing this",
+        "You're a genius"
+   ];
+
+
 Quiz();
 
 void Quiz()
@@ -252,6 +261,7 @@ void PrintTotalScore()
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine($"Total score: {points}");
+
     if (AllCorrectAnswers)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
