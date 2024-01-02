@@ -1,28 +1,29 @@
 ﻿
 int problemNumber = 1;
 int points = 0;
-bool harSvaretRigtigtPåAlt = true;
-
+bool AllCorrectAnswers = true;
+string[] correctTexts = new[] { "Correct! :)", "You are amazing", "Wow!", "What! How are you doing this", "You're a genius" };
 Quiz();
 
 void Quiz()
 {
     Console.Clear();
-    Console.WriteLine("            *********************************************************");
-    Console.WriteLine("            ***      Welcome to Baldi's Basic weird edition       ***");
-    Console.WriteLine("            ***       v1.0 (c) Copyright 2024, Zak McCracken      ***");
-    Console.WriteLine("            *********************************************************");
+    Console.WriteLine("            **********************************************************");
+    Console.WriteLine("            ***       Welcome to Baldi's Basic weird edition       ***");
+    Console.WriteLine("            ***       v1.04 by Zak McCracken & Zane McCracken      ***");
+    Console.WriteLine("            ***       (c) Copyright 2024                           ***");
+    Console.WriteLine("            **********************************************************");
 
     problemNumber = 1;
     points = 0;
-    harSvaretRigtigtPåAlt = true;
+    AllCorrectAnswers = true;
 
     PrintPoints(points);
     Console.WriteLine("What is 1+1 ?");
     var answer = ReadAnswer();
     if (answer == "window")
     {
-        Console.WriteLine("Correct! :)");
+        PrintCorrect();
         points = points + 3;
     }
     else
@@ -36,7 +37,7 @@ void Quiz()
     answer = ReadAnswer();
     if (answer == "fish")
     {
-        Console.WriteLine("Correct! :)");
+        PrintCorrect();
         points = points + 3;
     }
     else
@@ -49,7 +50,7 @@ void Quiz()
     answer = ReadAnswer();
     if (answer == "8")
     {
-        Console.WriteLine("Correct! :)");
+        PrintCorrect();
         points = points + 3;
     }
     else
@@ -63,7 +64,7 @@ void Quiz()
     answer = ReadAnswer();
     if (answer == "arrow")
     {
-        Console.WriteLine("Correct! :)");
+        PrintCorrect();
         points = points + 3;
     }
     else
@@ -79,7 +80,7 @@ void Quiz()
     answer = ReadAnswer();
     if (answer == "apple")
     {
-        Console.WriteLine("Correct! :)");
+        PrintCorrect();
         points = points + 3;
     }
     else
@@ -94,7 +95,7 @@ void Quiz()
     answer = ReadAnswer();
     if (answer == "yin and yang")
     {
-        Console.WriteLine("Correct! :)");
+        PrintCorrect();
         points = points + 3;
     }
     else
@@ -109,12 +110,27 @@ void Quiz()
     answer = ReadAnswer();
     if (answer == "chain")
     {
-        Console.WriteLine("Correct! :)");
+        PrintCorrect();
         points = points + 3;
     }
     else
     {
         PrintAnswer("The answer is 'chain'");
+    }
+
+
+
+    PrintPoints(points);
+    Console.WriteLine("What is 10+10 ?");
+    answer = ReadAnswer();
+    if (answer == "3====d")
+    {
+        PrintCorrect();
+        points = points + 3;
+    }
+    else
+    {
+        PrintAnswer2("The answer is '3====D'", "You are an idiot! Baldi is insane >:(");
     }
 
     PrintTotalScore();
@@ -123,7 +139,18 @@ void Quiz()
         Quiz();
 }
 
+void AnimateFromLeft(string s)
+{
+    for (int i = 0; i <= s.Length; i++)
+    {
+        var s2 = s.Substring(s.Length - i);
+        Console.Write(s2);
+        Console.SetCursorPosition(0, Console.GetCursorPosition().Top);
+        Thread.Sleep(30);
+    }
 
+    Console.WriteLine("");
+}
 
 
 string ReadAnswer()
@@ -132,10 +159,10 @@ string ReadAnswer()
     Console.Write($"PROBLEM {problemNumber}> ");
     Console.ForegroundColor = ConsoleColor.Gray;
 
-    string answer = Console.ReadLine()
+    string answer = Console.ReadLine()!
         .ToLower()
         .Trim()
-        .Replace("'","");
+        .Replace("'", "");
 
     if (string.IsNullOrEmpty(answer))
     {
@@ -154,7 +181,9 @@ string ReadAnswerWithoutProblem()
     Console.Write($"> ");
     Console.ForegroundColor = ConsoleColor.Gray;
 
-    string answer = Console.ReadLine().ToLower().Trim();
+    string answer = Console.ReadLine()!
+        .ToLower()
+        .Trim();
 
     if (string.IsNullOrEmpty(answer))
     {
@@ -173,7 +202,7 @@ bool WantToPlayAgain()
 
     var answer = ReadAnswerWithoutProblem();
     if (answer == "n")
-        return false;   
+        return false;
     if (answer == "y")
         return true;
     return WantToPlayAgain();
@@ -181,13 +210,20 @@ bool WantToPlayAgain()
 
 void PrintAnswer(string text)
 {
-    Console.WriteLine("WRONG!!! Baldi is angry");
+    PrintAnswer2(text,"WRONG!!! Baldi is angry");
+}
+
+void PrintAnswer2(string text, string curseText)
+{
+    Console.ForegroundColor = ConsoleColor.Red;
+    AnimateFromLeft(curseText);
+    Console.ForegroundColor = ConsoleColor.Gray;
 
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine(text);
     Console.ForegroundColor = ConsoleColor.Gray;
 
-    harSvaretRigtigtPåAlt = false;
+    AllCorrectAnswers = false;
 }
 
 
@@ -199,6 +235,10 @@ static void PrintPoints(int points)
     Console.ForegroundColor = ConsoleColor.Gray;
 }
 
+void PrintCorrect()
+{
+    AnimateFromLeft(correctTexts[Random.Shared.Next(correctTexts.Length)]);
+}
 
 void PrintTotalScore()
 {
@@ -207,7 +247,7 @@ void PrintTotalScore()
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine($"Total score: {points}");
-    if (harSvaretRigtigtPåAlt)
+    if (AllCorrectAnswers)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
 
