@@ -7,6 +7,10 @@ Quiz();
 
 void Quiz()
 {
+    problemNumber = 1;
+    points = 0;
+    AllCorrectAnswers = true;
+
     Console.Clear();
     Console.WriteLine("            **********************************************************");
     Console.WriteLine("            ***       Welcome to Baldi's Basic weird edition       ***");
@@ -14,12 +18,9 @@ void Quiz()
     Console.WriteLine("            ***       (c) Copyright 2024                           ***");
     Console.WriteLine("            **********************************************************");
 
-    problemNumber = 1;
-    points = 0;
-    AllCorrectAnswers = true;
 
     PrintPoints(points);
-    Console.WriteLine("What is 1+1 ?");
+    AnimateTypeWriterLine("What is 1+1 ?");
     var answer = ReadAnswer();
     if (answer == "window")
     {
@@ -33,7 +34,7 @@ void Quiz()
 
 
     PrintPoints(points);
-    Console.WriteLine("What is 2+2 ?");
+    AnimateTypeWriterLine("What is 2+2 ?");
     answer = ReadAnswer();
     if (answer == "fish")
     {
@@ -46,7 +47,7 @@ void Quiz()
     }
 
     PrintPoints(points);
-    Console.WriteLine("What is 3+3 ?");
+    AnimateTypeWriterLine("What is 3+3 ?");
     answer = ReadAnswer();
     if (answer == "8")
     {
@@ -60,7 +61,7 @@ void Quiz()
 
 
     PrintPoints(points);
-    Console.WriteLine("What is 4+4 ?");
+    AnimateTypeWriterLine("What is 4+4 ?");
     answer = ReadAnswer();
     if (answer == "arrow")
     {
@@ -76,7 +77,7 @@ void Quiz()
 
 
     PrintPoints(points);
-    Console.WriteLine("What is 5+5 ?");
+    AnimateTypeWriterLine("What is 5+5 ?");
     answer = ReadAnswer();
     if (answer == "apple")
     {
@@ -91,7 +92,7 @@ void Quiz()
 
 
     PrintPoints(points);
-    Console.WriteLine("What is 6+6 ?");
+    AnimateTypeWriterLine("What is 6+6 ?");
     answer = ReadAnswer();
     if (answer == "yin and yang")
     {
@@ -106,7 +107,7 @@ void Quiz()
 
 
     PrintPoints(points);
-    Console.WriteLine("What is 8+8 ?");
+    AnimateTypeWriterLine("What is 8+8 ?");
     answer = ReadAnswer();
     if (answer == "chain")
     {
@@ -121,7 +122,7 @@ void Quiz()
 
 
     PrintPoints(points);
-    Console.WriteLine("What is 10+10 ?");
+    AnimateTypeWriterLine("What is 10+10 ?");
     answer = ReadAnswer();
     if (answer == "3====d")
     {
@@ -143,8 +144,7 @@ void AnimateFromLeft(string s)
 {
     for (int i = 0; i <= s.Length; i++)
     {
-        var s2 = s.Substring(s.Length - i);
-        Console.Write(s2);
+        Console.Write(s[^i..]);
         Console.SetCursorPosition(0, Console.GetCursorPosition().Top);
         Thread.Sleep(30);
     }
@@ -152,6 +152,11 @@ void AnimateFromLeft(string s)
     Console.WriteLine("");
 }
 
+void AnimateTypeWriterLine(string s)
+{
+    s.ToList().ForEach(x => { Console.Write(x); Thread.Sleep(Random.Shared.Next(60)); });
+    Console.WriteLine("");
+}
 
 string ReadAnswer()
 {
@@ -210,7 +215,7 @@ bool WantToPlayAgain()
 
 void PrintAnswer(string text)
 {
-    PrintAnswer2(text,"WRONG!!! Baldi is angry");
+    PrintAnswer2(text, "WRONG!!! Baldi is angry");
 }
 
 void PrintAnswer2(string text, string curseText)
@@ -253,7 +258,7 @@ void PrintTotalScore()
 
         Console.WriteLine(@"
 hurraaayyy you beat the game! 
-
+                                    ..
        .''.      .        *''*    :_\/_:     . 
       :_\/_:   _\(/_  .:.*_\/_*   : /\ :  .'.:.'.
   .''.: /\ :   ./)\   ':'* /\ * :  '..'.  -=:o:=-
@@ -274,7 +279,81 @@ hurraaayyy you beat the game!
 You lost the game!
 
 HAHA AHAHAH AHAHAHAHHA AHHAHAH 
+");
+        AnimateSequence(new[] {
+@"
 
+
+
+
+
+                              /""\
+                          /'\|   |/'\
+                      /'\|   |   |   |
+                     |   |   |   |   |\
+                     |   |   |   |   |  \
+                     | *   *   *   * |>  >       
+                     |                  /
+                      |               /
+                       |            /
+                        \          |
+                         |         |",
+
+@"
+
+
+
+
+                              /""\
+                             |   |
+                          /'\|   |/'\
+                      /'\|   |   |   |
+                     |   |   |   |   |\
+                     |   |   |   |   |  \
+                     | *   *   *   * |>  >       
+                     |                  /
+                      |               /
+                       |            /
+                        \          |
+                         |         |",
+
+@"
+
+
+                              /""\
+                             |\./|
+                             |   |
+                             |   |
+                          /'\|   |/'\
+                      /'\|   |   |   |
+                     |   |   |   |   |\
+                     |   |   |   |   |  \
+                     | *   *   *   * |>  >       
+                     |                  /
+                      |               /
+                       |            /
+                        \          |
+                         |         |",
+
+@"
+
+                              /""\
+                             |\./|
+                             |   |
+                             |   |
+                             |>*<|
+                          /'\|   |/'\
+                      /'\|   |   |   |
+                     |   |   |   |   |\
+                     |   |   |   |   |  \
+                     | *   *   *   * |>  >       
+                     |                  /
+                      |               /
+                       |            /
+                        \          |
+                         |         |",
+
+@"
                               /""\
                              |\./|
                              |   |
@@ -290,9 +369,20 @@ HAHA AHAHAH AHAHAHAHHA AHHAHAH
                       |               /
                        |            /
                         \          |
-                         |         |
-                     
-");
+                         |         |",
+
+        }, TimeSpan.FromMilliseconds(250));
         Console.ForegroundColor = ConsoleColor.Gray;
+    }
+}
+
+void AnimateSequence(string[] texts, TimeSpan delay)
+{
+    var coord = Console.GetCursorPosition();
+    foreach (var text in texts)
+    {
+        Console.SetCursorPosition(coord.Left, coord.Top);
+        Console.WriteLine(text);
+        Thread.Sleep(delay);
     }
 }
