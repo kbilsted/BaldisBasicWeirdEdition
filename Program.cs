@@ -1,7 +1,9 @@
 ﻿
+using System.Media;
+
 int problemNumber = 1;
 int points = 0;
-bool AllCorrectAnswers = true;
+bool AllCorrectAnswers = false;
 string[] correctTexts =
     [
     "Correct! :)",
@@ -11,7 +13,8 @@ string[] correctTexts =
         "You're a genius"
    ];
 
-
+AllCorrectAnswers = true;
+PrintTotalScore();
 Quiz();
 
 void Quiz()
@@ -27,6 +30,7 @@ void Quiz()
     Console.WriteLine("            ***       (c) Copyright 2024                           ***");
     Console.WriteLine("            **********************************************************");
 
+    //SoundPlayer d = new SoundPlayer();
 
     PrintPoints(points);
     AnimateTypeWriterLine("What is 1+1 ?");
@@ -266,8 +270,23 @@ void PrintTotalScore()
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
 
-        Console.WriteLine(@"
-hurraaayyy you beat the game! 
+//        Console.WriteLine(@"
+//hurraaayyy you beat the game! 
+//                                    ..
+//       .''.      .        *''*    :_\/_:     . 
+//      :_\/_:   _\(/_  .:.*_\/_*   : /\ :  .'.:.'.
+//  .''.: /\ :   ./)\   ':'* /\ * :  '..'.  -=:o:=-
+// :_\/_:'.:::.    ' *''*    * '.\'/.' _\(/_'.':'.'
+// : /\ : :::::     *_\/_*     -= o =-  /)\    '  *
+//  '..'  ':::'     * /\ *     .'/.\'.   '
+//      *            *..*         :
+//        *
+//        *
+//");
+
+string[] fireworkds=
+    [
+    @"
                                     ..
        .''.      .        *''*    :_\/_:     . 
       :_\/_:   _\(/_  .:.*_\/_*   : /\ :  .'.:.'.
@@ -277,8 +296,67 @@ hurraaayyy you beat the game!
   '..'  ':::'     * /\ *     .'/.\'.   '
       *            *..*         :
         *
+",        
+@"
+
+                 .        *  *    :_\/_:       
+       _\/_    _\(/_  .:.*_\/_*   : /\ :  .'.:.'.
+  .  .  /\     ./)\   ':'* /\ * :  '  '.  -=:o:=-
+ :_\/_ '.:::     ' *  *    * '.\'/.' _\(/_'.':'.'
+ : /\   ::::      *_\/_*     -= o =-  /)\    '  *
+  '  '            * /\ *     .'/.\     
+      *            *  *          
         *
-");
+
+",
+    @"
+                                      
+                 .                 _\/_        
+       _\/_    _\(/_      _\/_      /\     
+        /\     ./)\        /\              =:o:= 
+  _\/_ '.:::                         _\(/_ 
+   /\   ::::       _\/_      -= o =-  /)\     
+                    /\             
+      *                         
+        *
+",        
+@"
+                                      
+                                   _ /_        
+       _ /     _  /_      _\ _      /     
+                /           \                o  
+  _\/_ '.:                            \(   
+   /\   ::         _\/_         o     / \     
+                    /\             
+      *                         
+        *
+",        
+@"
+
+                                     .
+                 .          .                           
+                                             .
+                                
+                    .           .
+                              
+      *                         
+        *
+",
+@"
+
+
+
+
+
+
+
+                               
+        *
+"
+];
+        AnimateSequence(fireworkds, TimeSpan.FromMilliseconds(250));
+        
+
         Console.ForegroundColor = ConsoleColor.Gray;
     }
     else
