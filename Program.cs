@@ -1,4 +1,5 @@
 ﻿
+using Baldy;
 using System.Media;
 
 int problemNumber = 1;
@@ -13,9 +14,12 @@ string[] correctTexts =
         "You're a genius"
    ];
 
-//AllCorrectAnswers = true;
+//for (int i = 0;i<29;i++)
+//    Console.WriteLine(i);
+////AllCorrectAnswers = true;
 //PrintTotalScore();
 //Console.ReadKey();
+
 Quiz();
 
 void Quiz()
@@ -25,15 +29,26 @@ void Quiz()
     AllCorrectAnswers = true;
 
     Console.Clear();
-    Console.WriteLine("            **********************************************************");
-    Console.WriteLine("            ***                                                    ***");
-    Console.WriteLine("            ***                                                    ***");
-    Console.WriteLine("            ***                                                    ***");
-    Console.WriteLine("            ***       Welcome to Baldi's Basic weird edition       ***");
-    Console.WriteLine("            ***       v1.05.6 by Zak McCracken & Zane McCracken    ***");
-    Console.WriteLine("            ***       (c) Copyright 2024                           ***");
-    Console.WriteLine("            ***                                                    ***");
-    Console.WriteLine("            **********************************************************");
+    Animator.AnimateMoveFromLeft(
+        [
+        @"
+                                                                         ___        
+        /-----------------------------------------------\               | B \___ / ~~\__   
+        |   Welcome to Baldi's Basic weird edition      | ______________ \______ ======_)-+
+        |   v1.05.6 by Zak McCracken & Zane McCracken   |                          |/      
+        |   (c) Copyright 2024 - SkYBoUnD UPDATE!!!!!   |                          ()     
+        \-----------------------------------------------/
+",
+        @"
+                                                                         ___        
+        /-----------------------------------------------\               | B \___ / ~~\__  |
+        |   Welcome to Baldi's Basic weird edition      | ______________ \______ ======_)-+
+        |   v1.05.6 by Zak McCracken & Zane McCracken   |                          |/     |
+        |   (c) Copyright 2024 - SkYBoUnD UPDATE!!!!!   |                          ()     
+        \-----------------------------------------------/
+",
+        ],
+        TimeSpan.FromMilliseconds(20));
 
     //SoundPlayer d = new SoundPlayer();
 
@@ -584,13 +599,7 @@ hurraaayyy you beat the game!
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" };
 
 
-
-
-
-
-        // AnimateSequence(fireworkds, TimeSpan.FromMilliseconds(130));
-
-        AnimateSequence(fireworks3, TimeSpan.FromMilliseconds(130));
+        Animator.AnimateSequence(fireworks3, TimeSpan.FromMilliseconds(130));
 
         Console.ForegroundColor = ConsoleColor.Gray;
     }
@@ -603,7 +612,7 @@ You lost the game!
 
 HAHA AHAHAH AHAHAHAHHA AHHAHAH 
 ");
-        AnimateSequence(new[] {
+        Animator.AnimateSequence(new[] {
 @"
 
 
@@ -699,13 +708,5 @@ HAHA AHAHAH AHAHAHAHHA AHHAHAH
     }
 }
 
-void AnimateSequence(string[] texts, TimeSpan delay)
-{
-    var coord = Console.GetCursorPosition();
-    foreach (var text in texts)
-    {
-        Console.SetCursorPosition(coord.Left, coord.Top);
-        Console.WriteLine(text);
-        Thread.Sleep(delay);
-    }
-}
+
+
