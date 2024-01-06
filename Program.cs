@@ -49,12 +49,13 @@ void Quiz()
 ",
         ],
         TimeSpan.FromMilliseconds(20));
+    string answer;
 
     //SoundPlayer d = new SoundPlayer();
 
     PrintPoints(points);
     AnimateTypeWriterLine("What is 1+1 ?");
-    var answer = ReadAnswer();
+    answer = ReadAnswer();
     if (answer == "window")
     {
         PrintCorrect();
@@ -167,6 +168,23 @@ void Quiz()
         PrintAnswer2("The answer is '3====D'", "You are an idiot! Baldi is insane >:(");
     }
 
+
+
+    PrintPoints(points);
+    AnimateTypeWriterLine("What is 1-1 ?");
+    answer = ReadAnswer(true);
+    if (answer == "H")
+    {
+        PrintCorrect();
+        points = points + 3;
+    }
+    else
+    {
+        PrintAnswer("The answer is 'H'");
+    }
+
+
+
     PrintTotalScore();
 
     if (WantToPlayAgain() == true)
@@ -191,21 +209,24 @@ void AnimateTypeWriterLine(string s)
     Console.WriteLine("");
 }
 
-string ReadAnswer()
+string ReadAnswer(bool isCaseSensitive = false)
 {
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.Write($"PROBLEM {problemNumber}> ");
     Console.ForegroundColor = ConsoleColor.Gray;
 
-    string answer = Console.ReadLine()!
-        .ToLower()
+    string answer = Console.ReadLine()!;
+    if (!isCaseSensitive)
+        answer = answer.ToLower();
+
+    answer = answer
         .Trim()
         .Replace("'", "");
 
     if (string.IsNullOrEmpty(answer))
     {
         Console.WriteLine("What is your answer??? :(");
-        return ReadAnswer();
+        return ReadAnswer(isCaseSensitive);
     }
 
     problemNumber = problemNumber + 1;
