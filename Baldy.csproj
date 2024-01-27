@@ -7,7 +7,18 @@
 		<Nullable>enable</Nullable>
 		<PublishSingleFile>true</PublishSingleFile>
 		<PublishTrimmed>true</PublishTrimmed>
+		<TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="ES_Trumpet-Sad.wav" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="ES_Trumpet-Sad.wav">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="System.Windows.Extensions" Version="8.0.0" />

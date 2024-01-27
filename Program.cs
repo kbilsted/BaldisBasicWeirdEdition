@@ -16,7 +16,7 @@ string[] correctTexts =
 
 //for (int i = 0;i<29;i++)
 //    Console.WriteLine(i);
-////AllCorrectAnswers = true;
+//AllCorrectAnswers = true;
 //PrintTotalScore();
 //Console.ReadKey();
 
@@ -51,7 +51,6 @@ void Quiz()
         TimeSpan.FromMilliseconds(20));
     string answer;
 
-    //SoundPlayer d = new SoundPlayer();
 
     PrintPoints(points);
     AnimateTypeWriterLine("What is 1+1 ?");
@@ -63,6 +62,8 @@ void Quiz()
     }
     else
     {
+        SoundPlayer d = new SoundPlayer("ES_Trumpet-Sad.wav");
+        d.Play();
         PrintAnswer("The answer is 'window'");
     }
 
